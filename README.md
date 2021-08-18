@@ -1,6 +1,7 @@
 # the-fork-challenge
 To run : 
 - mvn install
+- This test runs only in DEBUG MODE, set the break point solve the captcha and after that the test runs smoothly
 - To run the next test case :
     src/test/java/userinformation/testSuccessfulPersonalInformation.java
 
