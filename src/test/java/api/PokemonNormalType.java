@@ -3,15 +3,17 @@ package api;
 import io.restassured.RestAssured;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.ResponseBody;
+import org.apache.log4j.Logger;
 import org.testng.annotations.Test;
+import userinformation.testSuccessfulPersonalInformation;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import static io.restassured.RestAssured.given;
 
-public class NormalType {
-
+public class PokemonNormalType {
+    private Logger logger = Logger.getLogger(PokemonNormalType.class);
 
     @Test
     public void requestPokemon() {
@@ -22,6 +24,7 @@ public class NormalType {
         JsonPath jsonPath = new JsonPath(response.asString()).setRootPath("results");
 
         List<String> urls =  jsonPath.get("url");
+        logger.info("Pokemon Normal type: ");
 
         for (String url : urls) {
             ResponseBody pokemon = given().get(url).getBody();
@@ -30,7 +33,7 @@ public class NormalType {
             while(i < types.getList("").size()) {
                 if (types.getList("type.name").get(i).equals("normal")) {
                     normals.add(url);
-                    System.out.println(url);
+                    logger.info(url);
                 }
                 i++;
             }
